@@ -1,5 +1,7 @@
 from django.shortcuts import render
 # pandas用于解析读取excel数据
+from django.http import request
+from django.views import View
 import pandas as pd
 from pathlib import Path
 import time
@@ -62,6 +64,44 @@ def my_view(request):
 class MyModel(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+
+
+
+def basePage(request, *args, **kwargs):
+     context = {
+            'title' : 'base',
+            'name' : '我是base页面',
+            'content' : '大家好,我是内容部分'
+        }
+     return render(request, template_name='base.html', context=context)
+
+def indexPage(request, *args, **kwargs):
+     context = {
+            # 'name' : '我是index页面',
+            'title' : 'index的title部分',
+            'content' : '大家好,我是内容部分',
+            'blog.title' : 'blog的title部分',
+            'blog.author' : '作者是孙大圣',
+            'blog.last_updated_time' : '2025-05-13 12:12:12',
+            'blogs_with_type' : '类型是神话',
+            'blog.blog_type.pk' : '博客类型是文字pk',
+            'blog.blog_type' : '博客类型是你猜',
+            'blog.content' : '博客正文部分这在里',
+        }
+     return render(request, template_name='userManager/index.html', context=context)
+
+def errorPage(request, *args, **kwargs):
+     context = {
+            'name' : '我是error页面'
+        }
+     return render(request, template_name='userManager/error.html', context=context)
+
+def loginTop(request, *args, **kwargs):
+        context = {
+            'title' : 'title is here',
+            'content' : '我是谁???',
+        }
+        return render(request, template_name='usersInfo/login_top.html', context=context)
 
 if __name__ == '__main__':
     read_excel()

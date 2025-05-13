@@ -1,0 +1,30 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <!-- 公共头部内容 -->
+        <h1>网站标题</h1>
+    </header>
+    <nav>
+        <!-- 导航菜单 -->
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">登录</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <!-- 页面内容 -->
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <!-- 公共底部内容 -->
+        <p>版权所有 &copy; 2023</p>
+    </footer>
+</body>
+</html>
